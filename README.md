@@ -6,3 +6,5 @@ para que muestre información actualizada de del estado de los diferentes elemen
 Muestra mensajes al definir, editar, almacenar o eliminar de la memoria cualquiera de los elementos.
 También muestra un mensaje al recibir el comando para saber la memoria sram disponible.
 Espero que a los entusiastas de esta central les guste Saludos!!!
+
+<img src="http://lamaquetade.infotronikblog.com/wp-content/uploads/2019/04/DCCppMegaOLED128x64.jpeg">
