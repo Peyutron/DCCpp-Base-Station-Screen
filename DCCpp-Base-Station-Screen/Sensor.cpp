@@ -118,6 +118,7 @@ Sensor *Sensor::create(int snum, int pin, int pullUp, int v){
                               // Cada sensor debe tener su propia resistencia externa de pull-up 1K.
   if(v==1)
     INTERFACE.print("<O>");    
+ //   Oled::printSaved(1,true);       //OLED = muestra en pantalla guadado con exito
   return(tt);
   
 }

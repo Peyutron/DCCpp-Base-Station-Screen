@@ -216,6 +216,8 @@ void Output::store() {
     tt = tt->nextOutput;
     EEStore::eeStore->data.nOutputs++;
   }
+  //Oled::printSaved(3, true);
+
 }
 ///////////////////////////////////////////////////////////////////////////////
 
