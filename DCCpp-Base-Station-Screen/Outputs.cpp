@@ -87,11 +87,13 @@ void Output::activate(int s) {
     EEPROM.put(num, data.oStatus);
   INTERFACE.print("<Y");
   INTERFACE.print(data.id);
-  if (data.oStatus == 0)
+  if (data.oStatus == 0){
     INTERFACE.print(" 0>");
-  else
+        Oled::printOutput(data.id, data.pin, data.oStatus); 
+  } else {
     INTERFACE.print(" 1>");
     Oled::printOutput(data.id, data.pin, data.oStatus); 
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
