@@ -76,13 +76,18 @@ void Sensor::check(){
       INTERFACE.print("<Q");
       INTERFACE.print(tt->data.snum);
       INTERFACE.print(">");
+      Oled::printSensor(tt->data.snum, tt->data.pin, tt->active);
+      //Oled::printSensor(tt->data.snum, tt->data.pin, 1);
     } else if(tt->active && tt->signal>0.9){
       tt->active=false;
       INTERFACE.print("<q");
       INTERFACE.print(tt->data.snum);
       INTERFACE.print(">");
+      Oled::printSensor(tt->data.snum, tt->data.pin, 0);
+
     }
   } // bucle sobre todos los sensores
+
     
 } // Sensor::check
 
@@ -174,7 +179,7 @@ void Sensor::show(){
     INTERFACE.print(tt->data.pullUp);
     INTERFACE.print(">");
   }
-  Oled::printSensor(tt->data.snum, tt->data.pin, tt->data.pullUp);
+  //Oled::printSensor(tt->data.snum, tt->data.pin, tt->data.pullUp);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

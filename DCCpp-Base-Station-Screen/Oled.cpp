@@ -56,7 +56,7 @@ void Oled::init() {
   display.startscrollleft(0x00, 0x0F);
   delay(2000);  //
   display.stopscroll();
-    (3000);
+  delay(3000);
   display.clearDisplay();
 
 }
@@ -67,8 +67,7 @@ void Oled::initScreen() {
     display.setCursor(5, 1);
     display.print("DCC++");
     display.setCursor(50, 1);
-    display.setTextColor(BLACK, WHITE); // 'inverted' text
-    //display.setCursor(65,3);
+    display.setTextColor(BLACK, WHITE); // Texto invertido
     display.println(" ON ");
     display.setCursor(5, 13);
     display.setTextColor(WHITE);
@@ -80,7 +79,7 @@ void Oled::initScreen() {
     display.print(" ");
     if (direccion) display.println(">>");
     else display.println("<<");
-    // accessories:
+    // accessorios:
     display.setCursor(5, 23);
     display.print("Accessor: ");
     display.print(address);
@@ -107,6 +106,7 @@ void Oled::initScreen() {
     display.print(estadosalida);
 
   } else {        //PANTALLA INICIAL
+    
     display.setTextSize(2);
     display.setTextColor(WHITE);
     display.setCursor(5, 1);  display.print("DCC++"); display.setCursor(80, 1); display.println("OFF");
@@ -114,7 +114,6 @@ void Oled::initScreen() {
     display.setTextSize(1);
     display.setTextColor(WHITE);
     display.print("Ver: "); display.print(VERSION); display.print(" "); display.print(OLED_NAME);//display.print(ARDUINO_TYPE);
-
     display.setCursor(5, 33);
     display.setTextSize(1);
     display.setTextColor(WHITE);
@@ -124,12 +123,10 @@ void Oled::initScreen() {
 #elif COMM_TYPE == 1          // Ethernet Shield Card Selected
     display.print(COMM_SHIELD_OLED_NAME);
 #endif
-
     display.setCursor(5, 45);
     display.print("D:  ");  display.print(EEStore::eeStore->data.nTurnouts);
     display.print(" S:  "); display.print(EEStore::eeStore->data.nSensors);
     display.print(" O:  "); display.print(EEStore::eeStore->data.nOutputs);
-
   }
   display.setCursor(30, 56);
   display.print(PIE_);
@@ -160,7 +157,9 @@ void Oled::updateOled() {
           break;
       }
       timerpantalla--;
+      
     } else { //Si el temporizador es = o menor que 0 muestra la pantalla inicial
+      
       Oled::initScreen();
     }
   }
@@ -170,26 +169,29 @@ void Oled::showOledOn(bool onOff) {
   timerpantalla = 0;
   startScreen();
 }
+
 void Oled::printThrottle(int tCab, int vel, int direc) {
   cab = tCab;
   velocidad = vel;
   direccion = direc;
   startScreen();
 }
+
 void Oled::printAccesories(int addr, int subAddr, int Status) {
-  //nId = id;
   address = addr;
   subAddress = subAddr;
   tStatus = Status;
   startScreen();
 
 }
+
 void Oled::printSensor(int num, int Pin, int pullUp) {
   idsensor = num;
   pinsensor = Pin;
   estadosensor = pullUp;
   startScreen();
 }
+
 void Oled::printOutput(int num, int Pin, int state) {
   idsalida = num;
   pinsalida = Pin;
@@ -198,7 +200,6 @@ void Oled::printOutput(int num, int Pin, int state) {
 }
 
 void Oled::pantalla1() { //Corresponde a printDefined
-  //startScreen();
   display.setCursor(20, 15);
   display.println(pantalla1cadena1);
   display.setTextSize(1);
@@ -228,7 +229,7 @@ void Oled::pantalla3() { //Corresponde a Error
   display.println(pantalla1cadena2);
   display.display();
 }
-void Oled::pantalla4() { //Corresponde a Error
+void Oled::pantalla4() { //Corresponde a Sram
   display.clearDisplay();
   display.setTextSize(2);
   display.setTextColor(WHITE);
@@ -302,7 +303,7 @@ void Oled::printSaved( int option, bool estado) {
     pantalla1cadena1 =  "Error";
     pantalla1cadena2 =  "Almacenando";
     pantalla1cadena3 =  "";
-    pantalla = 2; //Pantalla para mostrar Error
+    pantalla = 2; //Pantalla para mostrar el exito al guardar la memoria EEPROM
   }
   timerpantalla = PAUSA_;
 }
@@ -365,7 +366,7 @@ void Oled::printSram(int ram) {  //Comando <F> INTENTOS PARA DETERMINAR CUANTA S
   pantalla1cadena1  = "Memoria disponible";     //2KB para UNO - 8KB para MEGA
   pantalla1cadena3  = "bytes";
   timerpantalla = PAUSA_;
-  pantalla = 4; //Pantalla para mostrar 'memoria borrada'
+  pantalla = 4; //Pantalla para mostrar el estado de la memoria Sram
 
 
 }

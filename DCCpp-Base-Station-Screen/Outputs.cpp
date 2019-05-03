@@ -91,6 +91,7 @@ void Output::activate(int s) {
     INTERFACE.print(" 0>");
   else
     INTERFACE.print(" 1>");
+    Oled::printOutput(data.id, data.pin, data.oStatus); 
 }
 
 ///////////////////////////////////////////////////////////////////////////////
